@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sesja rodzinna Nowaków — OFFLINE Agnieszka Domańska</title>
+<meta name="description" content="Galeria sesji rodzinnej — naturalne kadry lifestyle. OFFLINE Agnieszka Domańska.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* WERSJA 4 — PODSTRONA GALERII (spójna z wersja4-dark.html) */
+:root{
+  --bg:#141311;--panel:#1B1A16;--panel-2:#211F1A;--text:#B9B3A6;--head:#F2EDE3;
+  --gold:#C6A15B;--gold-soft:#E3CB93;--line:rgba(198,161,91,.28);--line-soft:rgba(242,237,227,.1);
+  --maxw:1300px;--gutter:clamp(20px,5vw,90px);
+  --serif:"Fraunces",Georgia,serif;--sans:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.75;font-weight:300;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2{margin:0;color:var(--head);font-family:var(--serif);font-weight:300;line-height:1.06}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+.kicker{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1.1s ease,transform 1.1s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(20,19,17,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;height:84px}
+.brand{font-family:var(--serif);font-size:23px;color:var(--head)}
+.brand b{color:var(--gold);font-weight:300}
+.back{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;transition:.3s;display:inline-flex;gap:8px}
+.back:hover{gap:14px;color:var(--gold-soft)}
+
+.head{padding-top:clamp(50px,8vw,110px);padding-bottom:clamp(30px,5vw,54px);text-align:center}
+.head__rule{width:64px;height:1px;background:var(--gold);margin:0 auto 24px}
+.head h1{font-size:clamp(2.8rem,9vw,7rem);line-height:1;margin-top:18px}
+.head h1 em{font-style:italic;color:var(--gold-soft)}
+.head p{max-width:56ch;margin:24px auto 0}
+.head__facts{display:flex;justify-content:center;gap:clamp(28px,6vw,72px);flex-wrap:wrap;margin-top:38px;padding-top:28px;border-top:1px solid var(--line-soft);max-width:760px;margin-inline:auto}
+.head__facts b{display:block;font-family:var(--serif);font-size:1.5rem;color:var(--head)}
+.head__facts span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+
+.gallery{padding-bottom:clamp(60px,9vw,120px)}
+.masonry{columns:3;column-gap:clamp(12px,1.6vw,18px)}
+.masonry figure{margin:0 0 clamp(12px,1.6vw,18px);break-inside:avoid;overflow:hidden;background:var(--panel);border:1px solid var(--line-soft)}
+.masonry img{width:100%;filter:brightness(.85);transition:transform 1.4s cubic-bezier(.2,.8,.2,1),filter .5s}
+.masonry figure:hover img{transform:scale(1.05);filter:brightness(1)}
+
+.foot-cta{background:var(--panel);text-align:center;padding-block:clamp(64px,10vw,120px);border-top:1px solid var(--line)}
+.foot-cta h2{font-size:clamp(2rem,6vw,4rem)}
+.foot-cta h2 em{font-style:italic;color:var(--gold-soft)}
+.foot-cta p{max-width:44ch;margin:20px auto 30px;color:var(--text)}
+.btn{display:inline-block;background:var(--gold);color:#1a1712;padding:16px 44px;border-radius:999px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;border:1px solid var(--gold);transition:.3s}
+.btn:hover{background:transparent;color:var(--gold)}
+
+@media (max-width:900px){.masonry{columns:2}}
+@media (max-width:560px){.masonry{columns:1}}
+
+/* --- LIGHTBOX --- */
+.masonry img{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(12,10,8,.94);display:none;align-items:center;justify-content:center;padding:clamp(14px,4vw,60px)}
+.lb.open{display:flex}
+.lb__stage{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:92vw}
+.lb__img{max-width:92vw;max-height:82vh;object-fit:contain;box-shadow:0 30px 80px -30px rgba(0,0,0,.85);opacity:0;transition:opacity .35s ease}
+.lb__img.ready{opacity:1}
+.lb__cap{color:rgba(255,255,255,.72);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.lb__btn{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);color:#fff;width:52px;height:52px;border-radius:999px;font-size:26px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .25s,transform .25s}
+.lb__btn:hover{background:rgba(255,255,255,.2)}
+.lb__close{top:22px;right:22px}
+.lb__prev{left:22px;top:50%;transform:translateY(-50%)}
+.lb__next{right:22px;top:50%;transform:translateY(-50%)}
+.lb__prev:hover{transform:translateY(-50%) scale(1.06)}
+.lb__next:hover{transform:translateY(-50%) scale(1.06)}
+.lb__count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;letter-spacing:.18em}
+@media (max-width:600px){.lb__prev{left:10px}.lb__next{right:10px}.lb__btn{width:44px;height:44px;font-size:22px}}
+
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="wersja4-dark.html">OFFLINE <b>Agnieszka Domańska</b></a>
+    <a class="back" href="wersja4-dark.html">← Powrót do strony głównej</a>
+  </div>
+</header>
+
+<main>
+<section class="head wrap">
+  <div class="head__rule"></div>
+  <span class="kicker">Realizacja · Sesja rodzinna · 2026</span>
+  <h1>Rodzina <em>Nowaków</em></h1>
+  <p>Zwyczajne popołudnie w domu: naleśniki, mały bałagan, śmiech i mnóstwo przytulania. Właśnie z tego rodzi się najprawdziwszy kadr. Bez sztywnych póz — po prostu Wy, tacy, jak jesteście na co dzień.</p>
+  <div class="head__facts">
+    <div><b>Sesja lifestyle</b><span>zakres</span></div>
+    <div><b>120 kadrów</b><span>w galerii</span></div>
+    <div><b>Dom rodzinny</b><span>miejsce</span></div>
+  </div>
+</section>
+
+<section class="gallery wrap">
+  <div class="masonry">
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg1/800/1050" alt="Przygotowania"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg2/800/560" alt="Detale"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg3/800/1000" alt="Ceremonia"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg4/800/1120" alt="Para młoda"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg5/800/600" alt="Wnętrza"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg6/800/980" alt="Portret"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg7/800/900" alt="Bukiet"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg8/800/1040" alt="Pierwszy taniec"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg9/800/560" alt="Toast"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg10/800/1080" alt="Wieczór"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg11/800/620" alt="Świece"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v4rodzg12/800/960" alt="Detal"></figure>
+  </div>
+</section>
+
+<section class="foot-cta">
+  <div class="wrap">
+    <span class="kicker">Wasz dzień</span>
+    <h2 style="margin-top:14px">Zarezerwujcie <em>swój termin</em></h2>
+    <p>Przyjmuję ograniczoną liczbę ślubów rocznie — umówcie prywatną konsultację.</p>
+    <a class="btn" href="wersja4-dark.html#kontakt">Umów konsultację</a><div style="margin-top:26px"><a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.82"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none"/></svg> Instagram</a></div>
+  </div>
+</section>
+</main>
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Podgląd zdjęcia">
+  <button class="lb__btn lb__close" aria-label="Zamknij">&times;</button>
+  <button class="lb__btn lb__prev" aria-label="Poprzednie">&lsaquo;</button>
+  <button class="lb__btn lb__next" aria-label="Następne">&rsaquo;</button>
+  <figure class="lb__stage"><img class="lb__img" src="" alt=""><figcaption class="lb__cap"></figcaption></figure>
+  <div class="lb__count"></div>
+</div>
+
+<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in')});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+<script>
+(function(){
+  var imgs=[].slice.call(document.querySelectorAll('.masonry img'));
+  if(!imgs.length)return;
+  var lb=document.getElementById('lb'),img=lb.querySelector('.lb__img'),cap=lb.querySelector('.lb__cap'),cnt=lb.querySelector('.lb__count'),i=0;
+  function show(n){i=(n+imgs.length)%imgs.length;var s=imgs[i];img.classList.remove('ready');var full=s.getAttribute('src');var pre=new Image();pre.onload=function(){img.src=full;img.alt=s.alt;img.classList.add('ready')};pre.src=full;cap.textContent=s.alt||'';cnt.textContent=(i+1)+' / '+imgs.length;}
+  function open(n){show(n);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  imgs.forEach(function(im,n){im.setAttribute('role','button');im.setAttribute('tabindex','0');im.addEventListener('click',function(){open(n)});im.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(n)}});});
+  lb.querySelector('.lb__close').addEventListener('click',close);
+  lb.querySelector('.lb__prev').addEventListener('click',function(){show(i-1)});
+  lb.querySelector('.lb__next').addEventListener('click',function(){show(i+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1);});
+})();
+</script>
+</body>
+</html>

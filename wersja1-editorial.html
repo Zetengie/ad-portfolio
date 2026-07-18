@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OFFLINE Agnieszka Domańska — Fotografia portretowa i ślubna</title>
+<meta name="description" content="OFFLINE Agnieszka Domańska — edytorialna fotografia par, ślubów, chrztów i rodzin. Ciepłe, eleganckie kadry z charakterem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   WERSJA 1 — EDITORIAL / MAGAZYNOWA
+   Paleta: kremowy beż + głęboka czerń + oxblood
+   Typografia: Fraunces (display) + Inter (tekst/utility)
+   ========================================================= */
+
+:root{
+  --paper:#F2EDE4;
+  --paper-2:#EAE3D6;
+  --ink:#16130F;
+  --ink-soft:#2A251E;
+  --taupe:#9A8F7D;
+  --line:#D8CFBF;
+  --accent:#7A2E22;        /* oxblood — używany oszczędnie */
+  --maxw:1280px;
+  --gutter:clamp(20px,5vw,72px);
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter",system-ui,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink-soft);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.02}
+
+/* --- utility / layout --- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
+.eyebrow{
+  font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--taupe);
+}
+.section{padding-block:clamp(72px,11vw,150px)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(242,237,228,.86);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{font-family:var(--serif);font-size:22px;letter-spacing:.02em;color:var(--ink)}
+.brand span{font-style:italic}
+.nav__menu{display:flex;gap:34px;align-items:center}
+.nav__menu a{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);position:relative;padding-block:6px}
+.nav__menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--accent);transition:width .35s ease}
+.nav__menu a:hover::after,.nav__menu a:focus-visible::after{width:100%}
+.nav__cta{border:1px solid var(--ink);padding:10px 18px;border-radius:999px;font-size:12px !important;letter-spacing:.12em}
+.nav__cta:hover{background:var(--ink);color:var(--paper)}
+.nav__burger{display:none;background:none;border:0;font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+
+/* =========================================================
+   HERO — z autorką (portret fotografki + misja)
+   Masthead magazynowy
+   ========================================================= */
+.hero{padding-top:clamp(40px,6vw,72px);padding-bottom:clamp(56px,8vw,110px)}
+.hero__masthead{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:clamp(36px,6vw,64px)}
+.hero__issue{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+.hero__title{
+  font-size:clamp(3rem,11vw,9.5rem);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;
+}
+.hero__title em{font-style:italic;text-transform:none}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:end}
+.hero__figure{position:relative;overflow:hidden;background:var(--paper-2);aspect-ratio:4/5}
+.hero__figure img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.hero__figure:hover img{transform:scale(1.05)}
+.hero__figcaption{position:absolute;left:16px;bottom:16px;background:rgba(22,19,15,.72);color:var(--paper);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px}
+.hero__lede{max-width:46ch}
+.hero__lede .eyebrow{display:block;margin-bottom:18px}
+.hero__lede p{font-family:var(--serif);font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.4;color:var(--ink);margin:0 0 22px}
+.hero__lede .sub{font-family:var(--sans);font-size:1rem;color:var(--ink-soft);line-height:1.7}
+.hero__sign{margin-top:26px;font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--accent)}
+.link-underline{display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid var(--ink);padding-bottom:3px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;transition:gap .3s ease}
+.link-underline:hover{gap:16px}
+
+/* =========================================================
+   O MNIE / FILOZOFIA
+   ========================================================= */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,6vw,80px);align-items:center}
+.about__media{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--paper-2)}
+.about__media img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.about__media:hover img{transform:scale(1.05)}
+.about__num{position:absolute;top:14px;left:14px;font-family:var(--serif);font-size:1rem;color:var(--paper);mix-blend-mode:difference}
+.about h2{font-size:clamp(2rem,4.6vw,3.4rem);margin:16px 0 26px;letter-spacing:-.01em}
+.about h2 em{font-style:italic;color:var(--accent)}
+.about p{max-width:52ch;margin:0 0 18px}
+.about .stats{display:flex;gap:44px;margin-top:34px;flex-wrap:wrap}
+.about .stats div{border-top:2px solid var(--ink);padding-top:12px}
+.about .stats b{display:block;font-family:var(--serif);font-size:2rem;color:var(--ink);line-height:1}
+.about .stats span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
+
+/* =========================================================
+   OFERTA — karty sesji (linki do podstron)
+   ========================================================= */
+.offer{background:var(--ink);color:var(--paper)}
+.offer h2{color:var(--paper);font-size:clamp(2rem,5vw,3.6rem)}
+.offer .eyebrow{color:var(--taupe)}
+.offer__head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(34px,5vw,58px)}
+.offer__list{border-top:1px solid rgba(242,237,228,.18)}
+.offer__item{
+  display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:center;
+  padding:clamp(22px,3vw,34px) 0;border-bottom:1px solid rgba(242,237,228,.18);
+  transition:padding-left .4s ease,background .4s ease;
+}
+.offer__item:hover{padding-left:18px;background:rgba(242,237,228,.04)}
+.offer__no{font-family:var(--serif);font-size:1rem;color:var(--taupe)}
+.offer__name{font-family:var(--serif);font-size:clamp(1.5rem,3.4vw,2.4rem);color:var(--paper)}
+.offer__name small{display:block;font-family:var(--sans);font-size:13px;letter-spacing:.04em;text-transform:none;color:var(--taupe);margin-top:6px;max-width:52ch}
+.offer__arrow{font-size:26px;color:var(--paper);transition:transform .4s ease}
+.offer__item:hover .offer__arrow{transform:translateX(8px);color:#E4B892}
+
+/* =========================================================
+   PORTFOLIO — asymetryczna siatka (zajawka)
+   ========================================================= */
+.portfolio__head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(30px,5vw,52px)}
+.portfolio h2{font-size:clamp(2rem,5vw,3.6rem)}
+.pf-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,22px)}
+.pf{position:relative;overflow:hidden;background:var(--paper-2)}
+.pf img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.8,.2,1),filter .6s ease}
+.pf:hover img{transform:scale(1.06);filter:brightness(.92)}
+.pf::after{content:attr(data-label);position:absolute;left:14px;bottom:14px;color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:.4s ease}
+.pf:hover::after{opacity:1;transform:none}
+.pf.a{grid-column:span 5;aspect-ratio:4/5}
+.pf.b{grid-column:span 7;aspect-ratio:16/11}
+.pf.c{grid-column:span 4;aspect-ratio:3/4}
+.pf.d{grid-column:span 4;aspect-ratio:3/4}
+.pf.e{grid-column:span 4;aspect-ratio:3/4}
+.pf.f{grid-column:span 7;aspect-ratio:16/10}
+.pf.g{grid-column:span 5;aspect-ratio:4/5}
+
+/* =========================================================
+   OPINIE
+   ========================================================= */
+.quotes{background:var(--paper-2)}
+.quotes__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px)}
+.quote{border-top:2px solid var(--ink);padding-top:22px}
+.quote p{font-family:var(--serif);font-size:1.22rem;line-height:1.5;color:var(--ink);margin:0 0 18px}
+.quote cite{font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe)}
+
+/* =========================================================
+   PROCES
+   ========================================================= */
+.process h2{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:clamp(34px,5vw,56px)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);counter-reset:step}
+.step{border-top:1px solid var(--line);padding-top:22px}
+.step::before{counter-increment:step;content:"0" counter(step);font-family:var(--serif);font-size:2.4rem;color:var(--accent);display:block;margin-bottom:14px;line-height:1}
+.step h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:10px}
+.step p{margin:0;color:var(--ink-soft)}
+
+/* =========================================================
+   CENNIK
+   ========================================================= */
+.pricing{background:var(--ink);color:var(--paper)}
+.pricing h2{color:var(--paper);font-size:clamp(2rem,5vw,3.6rem);margin-bottom:clamp(34px,5vw,56px)}
+.pricing .eyebrow{color:var(--taupe)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+.plan{border:1px solid rgba(242,237,228,.2);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column}
+.plan.feat{background:var(--paper);color:var(--ink-soft)}
+.plan h3{font-family:var(--serif);font-size:1.6rem;color:inherit;margin-bottom:6px}
+.plan .price{font-family:var(--serif);font-size:2.6rem;margin:14px 0 4px;color:inherit}
+.plan .price span{font-family:var(--sans);font-size:13px;letter-spacing:.1em;color:var(--taupe)}
+.plan.feat .price span{color:#8a7d66}
+.plan ul{list-style:none;padding:0;margin:22px 0 26px;flex:1}
+.plan li{padding:9px 0;border-bottom:1px solid rgba(242,237,228,.14);font-size:.95rem}
+.plan.feat li{border-color:var(--line)}
+.plan .btn-plan{margin-top:auto;text-align:center;border:1px solid currentColor;padding:12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:.3s}
+.plan .btn-plan:hover{background:var(--paper);color:var(--ink)}
+.plan.feat .btn-plan{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.plan.feat .btn-plan:hover{background:transparent;color:var(--ink)}
+
+/* =========================================================
+   KONTAKT / FORMULARZ
+   ========================================================= */
+.contact__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(32px,6vw,80px)}
+.contact h2{font-size:clamp(2.2rem,5.5vw,4rem);letter-spacing:-.01em}
+.contact h2 em{font-style:italic;color:var(--accent)}
+.contact__intro{max-width:36ch;margin:22px 0 30px}
+.contact__meta{display:grid;gap:14px}
+.contact__meta a{border-bottom:1px solid var(--line);padding-bottom:8px;display:inline-block}
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe)}
+input,select,textarea{
+  font-family:var(--sans);font-size:1rem;color:var(--ink);
+  background:transparent;border:0;border-bottom:1px solid var(--ink);
+  padding:12px 2px;border-radius:0;
+}
+input::placeholder,textarea::placeholder{color:#b7ac98}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 1px 0 var(--accent)}
+textarea{resize:vertical;min-height:120px}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 16px) 20px,calc(100% - 11px) 20px;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.btn{
+  grid-column:1/-1;justify-self:start;margin-top:8px;
+  background:var(--ink);color:var(--paper);border:1px solid var(--ink);
+  font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  padding:16px 40px;border-radius:999px;cursor:pointer;transition:.3s;
+}
+.btn:hover{background:transparent;color:var(--ink)}
+
+/* =========================================================
+   STOPKA
+   ========================================================= */
+.footer{background:var(--ink);color:var(--paper);padding-block:clamp(56px,8vw,88px)}
+.footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+.footer__brand{font-family:var(--serif);font-size:clamp(2rem,5vw,3.4rem);line-height:1;color:var(--paper)}
+.footer__brand span{font-style:italic}
+.footer h4{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);margin:0 0 16px;font-weight:500}
+.footer a{display:block;padding:6px 0;color:var(--paper);opacity:.85;transition:opacity .3s,padding-left .3s}
+.footer a:hover{opacity:1;padding-left:6px}
+.footer__bottom{border-top:1px solid rgba(242,237,228,.18);margin-top:clamp(40px,6vw,64px);padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;letter-spacing:.06em;color:var(--taupe)}
+
+/* =========================================================
+   RESPONSYWNOŚĆ
+   ========================================================= */
+@media (max-width:960px){
+  .hero__grid,.about,.contact__grid{grid-template-columns:1fr}
+  .about__media{max-width:440px}
+  .quotes__grid,.steps,.plans{grid-template-columns:1fr}
+  .footer__grid{grid-template-columns:1fr 1fr}
+  .pf.a,.pf.b,.pf.c,.pf.d,.pf.e,.pf.f,.pf.g{grid-column:span 6}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .nav__menu{display:none}
+  .nav__burger{display:block}
+  .offer__item{grid-template-columns:40px 1fr auto;gap:14px}
+  .offer__name small{display:none}
+  form{grid-template-columns:1fr}
+  .footer__grid{grid-template-columns:1fr}
+  .pf.a,.pf.b,.pf.c,.pf.d,.pf.e,.pf.f,.pf.g{grid-column:span 12}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top">OFFLINE <span>Agnieszka Domańska</span></a>
+    <nav class="nav__menu" aria-label="Główne">
+      <a href="#o-mnie">O mnie</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#oferta">Oferta</a>
+      <a href="#realizacje">Realizacje</a>
+      <a class="nav__cta" href="#kontakt">Kontakt</a>
+    </nav>
+    <button class="nav__burger" aria-label="Menu">Menu</button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO (z autorką) ============ -->
+<section class="hero wrap">
+  <div class="hero__masthead">
+    <span class="hero__issue">Studio fotograficzne — Kraków</span>
+    <span class="hero__issue">Portret · Para · Ślub · Rodzina</span>
+  </div>
+  <h1 class="hero__title">Ludzie,<br>nie <em>pozy</em></h1>
+
+  <div class="hero__grid" style="margin-top:clamp(36px,6vw,64px)">
+    <figure class="hero__figure reveal">
+      <img src="https://picsum.photos/seed/v1-klara/900/1125" alt="OFFLINE Agnieszka Domańska — fotografka portretowa i ślubna" loading="eager">
+      <figcaption class="hero__figcaption">OFFLINE Agnieszka Domańska — założycielka studia</figcaption>
+    </figure>
+    <div class="hero__lede reveal">
+      <span class="eyebrow">Kilka słów ode mnie</span>
+      <p>Fotografuję ludzi w ich najprawdziwszych momentach — spojrzenia między zdaniami, dłonie splecione bez powodu, śmiech tuż przed „już".</p>
+      <p class="sub">Od ośmiu lat towarzyszę parom, rodzinom i dzieciom z aparatem, który ma zniknąć — tak, żebyście zostali tylko wy. Pracuję edytorialnie: kadr ma opowiadać, nie tylko dokumentować.</p>
+      <div class="hero__sign">— Agnieszka</div>
+      <a class="link-underline" href="#o-mnie" style="margin-top:26px">Poznaj mnie bliżej →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============ O MNIE ============ -->
+<section class="section wrap" id="o-mnie">
+  <div class="about">
+    <figure class="about__media reveal">
+      <span class="about__num">01 — O mnie</span>
+      <img src="https://picsum.photos/seed/v1-about/800/1067" alt="Agnieszka przy pracy podczas sesji">
+    </figure>
+    <div class="reveal">
+      <span class="eyebrow">Filozofia pracy</span>
+      <h2>Piękno tkwi w <em>tym, co pomiędzy</em></h2>
+      <p>Nie ustawiam Was jak do zdjęcia legitymacyjnego. Zamiast tego tworzę przestrzeń, w której można być sobą — a ja czekam na moment, w którym prawda sama wchodzi w kadr.</p>
+      <p>Światło naturalne, spokojne tempo, minimum reżyserowania. Efekt to zdjęcia, które za dwadzieścia lat wciąż będą wyglądać jak Wy, a nie jak trend z danego sezonu.</p>
+      <div class="stats">
+        <div><b>8 lat</b><span>doświadczenia</span></div>
+        <div><b>190+</b><span>sesji i ślubów</span></div>
+        <div><b>2 tyg.</b><span>czas realizacji</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFERTA (karty → podstrony) ============ -->
+<section class="section offer" id="oferta">
+  <div class="wrap">
+    <div class="offer__head reveal">
+      <div>
+        <span class="eyebrow">Rodzaje sesji</span>
+        <h2 style="margin-top:14px">Oferta</h2>
+      </div>
+      <p style="max-width:38ch;color:var(--taupe)">Każdy typ sesji ma osobną galerię realizacji — kliknij, aby zobaczyć, jak wygląda cały reportaż.</p>
+    </div>
+    <div class="offer__list">
+      <a class="offer__item" href="wersja1-sesja-narzeczenska.html">
+        <span class="offer__no">01</span>
+        <span class="offer__name">Sesje narzeczeńskie<small>Wasza historia przed dniem ślubu — w plenerze, na luzie, we dwoje.</small></span>
+        <span class="offer__arrow">→</span>
+      </a>
+      <a class="offer__item" href="wersja1-sesja-slubna.html">
+        <span class="offer__no">02</span>
+        <span class="offer__name">Śluby i wesela<small>Pełny reportaż dnia — od przygotowań po ostatni taniec.</small></span>
+        <span class="offer__arrow">→</span>
+      </a>
+      <a class="offer__item" href="wersja1-sesja-chrzest.html">
+        <span class="offer__no">03</span>
+        <span class="offer__name">Chrzciny<small>Ciepła, rodzinna dokumentacja pierwszego wielkiego dnia.</small></span>
+        <span class="offer__arrow">→</span>
+      </a>
+      <a class="offer__item" href="wersja1-sesja-rodzinna.html">
+        <span class="offer__no">04</span>
+        <span class="offer__name">Sesje rodzinne<small>Codzienna bliskość zatrzymana w kadrze — w domu lub w plenerze.</small></span>
+        <span class="offer__arrow">→</span>
+      </a>
+      <a class="offer__item" href="wersja1-sesja-portret.html">
+        <span class="offer__no">05</span>
+        <span class="offer__name">Portrety indywidualne<small>Portret edytorialny — do biznesu, do siebie, na teraz.</small></span>
+        <span class="offer__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO (zajawka) ============ -->
+<section class="section wrap" id="portfolio">
+  <div class="portfolio">
+    <div class="portfolio__head reveal">
+      <div>
+        <span class="eyebrow">Wybrane kadry</span>
+        <h2 style="margin-top:14px">Portfolio</h2>
+      </div>
+      <a class="link-underline" href="wersja1-sesja-slubna.html">Zobacz pełną galerię →</a>
+    </div>
+    <div class="pf-grid">
+      <a class="pf a reveal" href="wersja1-sesja-slubna.html" data-label="Ślub — Ania &amp; Piotr"><img src="https://picsum.photos/seed/v1-pf1/800/1000" alt="Kadr ze ślubu"></a>
+      <a class="pf b reveal" href="wersja1-sesja-narzeczenska.html" data-label="Sesja narzeczeńska"><img src="https://picsum.photos/seed/v1-pf2/1100/760" alt="Sesja narzeczeńska"></a>
+      <a class="pf c reveal" href="wersja1-sesja-rodzinna.html" data-label="Rodzina"><img src="https://picsum.photos/seed/v1-pf3/800/1067" alt="Sesja rodzinna"></a>
+      <a class="pf d reveal" href="wersja1-sesja-portret.html" data-label="Portret"><img src="https://picsum.photos/seed/v1-pf4/800/1067" alt="Portret indywidualny"></a>
+      <a class="pf e reveal" href="wersja1-sesja-chrzest.html" data-label="Chrzciny"><img src="https://picsum.photos/seed/v1-pf5/800/1067" alt="Chrzciny"></a>
+      <a class="pf f reveal" href="wersja1-sesja-slubna.html" data-label="Wesele"><img src="https://picsum.photos/seed/v1-pf6/1100/700" alt="Wesele"></a>
+      <a class="pf g reveal" href="wersja1-sesja-narzeczenska.html" data-label="Plener"><img src="https://picsum.photos/seed/v1-pf7/800/1000" alt="Sesja plenerowa"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPINIE ============ -->
+<section class="section quotes" id="realizacje">
+  <div class="wrap">
+    <span class="eyebrow reveal">Realizacje · Opinie par</span>
+    <div class="quotes__grid" style="margin-top:34px">
+      <blockquote class="quote reveal">
+        <p>„Agnieszka ma dar znikania. Ani razu nie czuliśmy aparatu, a dostaliśmy zdjęcia, na których jesteśmy naprawdę my."</p>
+        <cite>Ania &amp; Piotr — ślub, Wieliczka</cite>
+      </blockquote>
+      <blockquote class="quote reveal">
+        <p>„Oglądamy te kadry co kilka tygodni. Za każdym razem znajdujemy nowy szczegół, który nam umknął tamtego dnia."</p>
+        <cite>Marta &amp; Kuba — sesja narzeczeńska</cite>
+      </blockquote>
+      <blockquote class="quote reveal">
+        <p>„Nasza córka nie usiedzi minuty. Agnieszka po prostu bawiła się z nią — i tak powstały najpiękniejsze zdjęcia."</p>
+        <cite>Rodzina Kowalskich — chrzciny</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCES ============ -->
+<section class="section wrap process">
+  <span class="eyebrow reveal">Jak pracujemy</span>
+  <h2 class="reveal" style="margin-top:14px">Proces współpracy</h2>
+  <div class="steps">
+    <div class="step reveal">
+      <h3>Kontakt i rozmowa</h3>
+      <p>Piszecie do mnie przez formularz. Ustalamy termin, miejsce i to, na czym Wam naprawdę zależy.</p>
+    </div>
+    <div class="step reveal">
+      <h3>Dzień sesji</h3>
+      <p>Spotykamy się bez pośpiechu. Ja prowadzę delikatnie, Wy jesteście sobą — reszta dzieje się sama.</p>
+    </div>
+    <div class="step reveal">
+      <h3>Odbiór zdjęć</h3>
+      <p>W ciągu dwóch tygodni dostajecie wywołaną galerię online i pliki w wysokiej rozdzielczości.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CENNIK ============ -->
+<section class="section pricing">
+  <div class="wrap">
+    <span class="eyebrow reveal">Pakiety</span>
+    <h2 class="reveal" style="margin-top:14px">Cennik</h2>
+    <div class="plans">
+      <div class="plan reveal">
+        <h3>Sesja</h3>
+        <div class="price">1 200 zł<span> / 1,5h</span></div>
+        <ul>
+          <li>Sesja w plenerze lub studio</li>
+          <li>40+ obrobionych kadrów</li>
+          <li>Galeria online</li>
+          <li>Realizacja do 2 tygodni</li>
+        </ul>
+        <a class="btn-plan" href="#kontakt">Zapytaj o termin</a>
+      </div>
+      <div class="plan feat reveal">
+        <h3>Ślub — reportaż</h3>
+        <div class="price">od 4 500 zł<span> / dzień</span></div>
+        <ul>
+          <li>Przygotowania → wesele</li>
+          <li>400+ obrobionych kadrów</li>
+          <li>Sesja narzeczeńska gratis</li>
+          <li>Album premium w opcji</li>
+        </ul>
+        <a class="btn-plan" href="#kontakt">Sprawdź dostępność</a>
+      </div>
+      <div class="plan reveal">
+        <h3>Rodzina / Chrzest</h3>
+        <div class="price">950 zł<span> / 1h</span></div>
+        <ul>
+          <li>Sesja w domu lub plenerze</li>
+          <li>30+ obrobionych kadrów</li>
+          <li>Galeria online</li>
+          <li>Odbitki w opcji</li>
+        </ul>
+        <a class="btn-plan" href="#kontakt">Zapytaj o termin</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT / FORMULARZ ============ -->
+<section class="section wrap" id="kontakt">
+  <div class="contact__grid">
+    <div class="reveal">
+      <span class="eyebrow">Napisz do mnie</span>
+      <h2 style="margin-top:14px">Zróbmy razem <em>coś pięknego</em></h2>
+      <p class="contact__intro">Opowiedzcie mi o sobie i o dniu, który chcecie zatrzymać. Odpisuję w ciągu 48 godzin.</p>
+      <div class="contact__meta">
+        <a href="mailto:hello@offline-studio.pl">hello@offline-studio.pl</a>
+        <a href="tel:+48600100200">+48 600 100 200</a>
+        <a href="#" style="display:inline-flex;align-items:center;gap:9px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none"/></svg>@offline.domanska</a>
+        <span style="color:var(--taupe)">Kraków · realizacje w całej Polsce</span>
+      </div>
+    </div>
+    <form class="reveal" onsubmit="return false" novalidate>
+      <div class="field">
+        <label for="v1-name">Imię i nazwisko</label>
+        <input id="v1-name" type="text" name="name" placeholder="Anna Kowalska" required>
+      </div>
+      <div class="field">
+        <label for="v1-email">E-mail</label>
+        <input id="v1-email" type="email" name="email" placeholder="anna@email.pl" required>
+      </div>
+      <div class="field">
+        <label for="v1-phone">Telefon</label>
+        <input id="v1-phone" type="tel" name="phone" placeholder="+48 600 000 000">
+      </div>
+      <div class="field">
+        <label for="v1-type">Rodzaj sesji</label>
+        <select id="v1-type" name="type">
+          <option value="narzeczenska">Sesja narzeczeńska</option>
+          <option value="slubna">Ślub / wesele</option>
+          <option value="chrzest">Chrzciny</option>
+          <option value="rodzinna">Sesja rodzinna</option>
+          <option value="portret">Portret indywidualny</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="v1-msg">Wiadomość</label>
+        <textarea id="v1-msg" name="message" placeholder="Kilka słów o Was i planowanym terminie…"></textarea>
+      </div>
+      <button class="btn" type="submit">Wyślij zapytanie</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ STOPKA ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">OFFLINE <span>Agnieszka Domańska</span></div>
+        <p style="max-width:34ch;margin-top:18px;color:var(--taupe)">Edytorialna fotografia ludzi. Ciepło, elegancja i prawda w kadrze.</p>
+      </div>
+      <div>
+        <h4>Nawigacja</h4>
+        <a href="#o-mnie">O mnie</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <div>
+        <h4>Social &amp; kontakt</h4>
+        <a href="#" style="display:inline-flex;align-items:center;gap:9px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none"/></svg>Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Pinterest</a>
+        <a href="mailto:hello@offline-studio.pl">hello@offline-studio.pl</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 OFFLINE Agnieszka Domańska. Wszystkie prawa zastrzeżone.</span>
+      <span>Kraków, Polska</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Reveal on scroll — respektuje prefers-reduced-motion */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(e){e.classList.add('in')});return;
+  }
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+  },{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
