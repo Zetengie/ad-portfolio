@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portret — Alicja — OFFLINE Agnieszka Domańska</title>
+<meta name="description" content="Galeria portretu indywidualnego — fotografia edytorialna. OFFLINE Agnieszka Domańska.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* WERSJA 3 — PODSTRONA GALERII (spójna z wersja3-cool.html) */
+:root{
+  --bg:#EFEAE5;--bg-2:#DFE6EC;--ink:#36434F;--text:#47586B;
+  --olive:#5F7691;--olive-deep:#47586B;--sand:#A78A6B;--muted:#8791A0;--line:#D8D3CA;
+  --maxw:1240px;--gutter:clamp(20px,5vw,80px);
+  --serif:"Playfair Display",Georgia,serif;--sans:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.72;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2{margin:0;color:var(--ink);font-family:var(--serif);font-weight:500;line-height:1.08}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--olive);font-weight:600}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(239,234,229,.88);backdrop-filter:blur(10px)}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;height:80px}
+.brand{font-family:var(--serif);font-style:italic;font-size:23px;color:var(--ink)}
+.back{font-size:13px;letter-spacing:.06em;color:var(--olive);font-weight:600;display:inline-flex;gap:8px;transition:gap .3s}
+.back:hover{gap:14px}
+
+.head{padding-top:clamp(40px,7vw,90px);padding-bottom:clamp(30px,5vw,50px)}
+.head__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(28px,5vw,64px);align-items:end}
+.head h1{font-size:clamp(2.6rem,8vw,6rem);line-height:1.02}
+.head h1 em{font-style:italic;color:var(--sand)}
+.head p{max-width:48ch;margin:22px 0 0}
+.head__facts{display:grid;gap:14px}
+.head__facts div{background:var(--bg-2);border-radius:16px;padding:16px 20px}
+.head__facts b{display:block;font-family:var(--serif);color:var(--ink);font-size:1.3rem}
+.head__facts span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.gallery{padding-bottom:clamp(60px,9vw,120px)}
+.masonry{columns:3;column-gap:clamp(14px,2vw,22px)}
+.masonry figure{margin:0 0 clamp(14px,2vw,22px);break-inside:avoid;overflow:hidden;background:var(--bg-2);border-radius:18px}
+.masonry figure:first-child{border-radius:180px 180px 18px 18px}
+.masonry img{width:100%;transition:transform 1.4s cubic-bezier(.2,.8,.2,1),filter .5s}
+.masonry figure:hover img{transform:scale(1.05);filter:brightness(.96)}
+
+.foot-cta{background:var(--olive-deep);color:#E9E4DC;text-align:center;padding-block:clamp(64px,10vw,120px)}
+.foot-cta h2{color:#fff;font-size:clamp(2rem,6vw,4rem)}
+.foot-cta h2 em{font-style:italic;color:#AECAE9}
+.foot-cta p{max-width:42ch;margin:20px auto 30px;color:rgba(233,228,220,.75)}
+.btn{display:inline-block;background:#E9E4DC;color:var(--ink);padding:15px 42px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;transition:.3s;border:1px solid #E9E4DC}
+.btn:hover{background:transparent;color:#fff}
+
+@media (max-width:900px){.masonry{columns:2}.head__grid{grid-template-columns:1fr}}
+@media (max-width:560px){.masonry{columns:1}}
+
+/* --- LIGHTBOX --- */
+.masonry img{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(24,30,38,.94);display:none;align-items:center;justify-content:center;padding:clamp(14px,4vw,60px)}
+.lb.open{display:flex}
+.lb__stage{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:92vw}
+.lb__img{max-width:92vw;max-height:82vh;object-fit:contain;box-shadow:0 30px 80px -30px rgba(0,0,0,.85);opacity:0;transition:opacity .35s ease}
+.lb__img.ready{opacity:1}
+.lb__cap{color:rgba(255,255,255,.72);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.lb__btn{position:absolute;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);color:#fff;width:52px;height:52px;border-radius:999px;font-size:26px;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .25s,transform .25s}
+.lb__btn:hover{background:rgba(255,255,255,.2)}
+.lb__close{top:22px;right:22px}
+.lb__prev{left:22px;top:50%;transform:translateY(-50%)}
+.lb__next{right:22px;top:50%;transform:translateY(-50%)}
+.lb__prev:hover{transform:translateY(-50%) scale(1.06)}
+.lb__next:hover{transform:translateY(-50%) scale(1.06)}
+.lb__count{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.6);font-size:12px;letter-spacing:.18em}
+@media (max-width:600px){.lb__prev{left:10px}.lb__next{right:10px}.lb__btn{width:44px;height:44px;font-size:22px}}
+
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="wersja3-cool.html">OFFLINE Agnieszka Domańska</a>
+    <a class="back" href="wersja3-cool.html">← Powrót do strony głównej</a>
+  </div>
+</header>
+
+<main>
+<section class="head wrap">
+  <div class="head__grid">
+    <div class="reveal">
+      <span class="kicker">Realizacja · Portret indywidualny · 2026</span>
+      <h1 style="margin-top:18px">Portret — <em>Alicja</em></h1>
+      <p>Edytorialny portret przy naturalnym świetle — dla siebie, do biznesu, na nowy rozdział. Spokojna sesja, na której bez pośpiechu odnajdujemy Twój najlepszy kadr.</p>
+    </div>
+    <div class="head__facts reveal">
+      <div><b>Sesja studyjna</b><span>zakres</span></div>
+      <div><b>60 kadrów</b><span>w galerii</span></div>
+      <div><b>Światło naturalne</b><span>styl</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery wrap">
+  <div class="masonry">
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg1/800/1050" alt="Przygotowania"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg2/800/560" alt="Detale"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg3/800/1000" alt="Ceremonia"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg4/800/1120" alt="Para w sadzie"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg5/800/600" alt="Goście"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg6/800/980" alt="Portret"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg7/800/900" alt="Stoły"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg8/800/1040" alt="Pierwszy taniec"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg9/800/560" alt="Toast"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg10/800/1080" alt="Wieczór"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg11/800/620" alt="Zabawa"></figure>
+    <figure class="reveal"><img src="https://picsum.photos/seed/v3portg12/800/960" alt="Detal"></figure>
+  </div>
+</section>
+
+<section class="foot-cta">
+  <div class="wrap">
+    <span class="kicker" style="color:#AECAE9">Wasz dzień</span>
+    <h2 style="margin-top:14px">Zarezerwujcie <em>swój termin</em></h2>
+    <p>Przyjmuję ograniczoną liczbę ślubów w sezonie — napiszcie wcześniej.</p>
+    <a class="btn" href="wersja3-cool.html#kontakt">Sprawdź dostępność</a><div style="margin-top:26px"><a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.82"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.4"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none"/></svg> Instagram</a></div>
+  </div>
+</section>
+</main>
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Podgląd zdjęcia">
+  <button class="lb__btn lb__close" aria-label="Zamknij">&times;</button>
+  <button class="lb__btn lb__prev" aria-label="Poprzednie">&lsaquo;</button>
+  <button class="lb__btn lb__next" aria-label="Następne">&rsaquo;</button>
+  <figure class="lb__stage"><img class="lb__img" src="" alt=""><figcaption class="lb__cap"></figcaption></figure>
+  <div class="lb__count"></div>
+</div>
+
+<script>
+(function(){var els=document.querySelectorAll('.reveal');
+if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in')});return;}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+els.forEach(function(e){io.observe(e)});})();
+</script>
+<script>
+(function(){
+  var imgs=[].slice.call(document.querySelectorAll('.masonry img'));
+  if(!imgs.length)return;
+  var lb=document.getElementById('lb'),img=lb.querySelector('.lb__img'),cap=lb.querySelector('.lb__cap'),cnt=lb.querySelector('.lb__count'),i=0;
+  function show(n){i=(n+imgs.length)%imgs.length;var s=imgs[i];img.classList.remove('ready');var full=s.getAttribute('src');var pre=new Image();pre.onload=function(){img.src=full;img.alt=s.alt;img.classList.add('ready')};pre.src=full;cap.textContent=s.alt||'';cnt.textContent=(i+1)+' / '+imgs.length;}
+  function open(n){show(n);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  imgs.forEach(function(im,n){im.setAttribute('role','button');im.setAttribute('tabindex','0');im.addEventListener('click',function(){open(n)});im.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(n)}});});
+  lb.querySelector('.lb__close').addEventListener('click',close);
+  lb.querySelector('.lb__prev').addEventListener('click',function(){show(i-1)});
+  lb.querySelector('.lb__next').addEventListener('click',function(){show(i+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1);});
+})();
+</script>
+</body>
+</html>
