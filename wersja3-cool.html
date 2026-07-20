@@ -22,7 +22,7 @@
   --ink:#36434F;
   --text:#47586B;
   --olive:#5F7691;
-  --olive-deep:#47586B;--sand:#A78A6B;
+  --olive-deep:#47586B;--sand:#A78A6B;--brown:#6F5942;--brown-deep:#573F2A;
   --muted:#8791A0;
   --line:#D8D3CA;
   --maxw:1240px;
@@ -71,8 +71,8 @@ h1,h2,h3{margin:0;color:var(--ink);font-family:var(--serif);font-weight:500;line
 .nav__menu a:hover{color:var(--olive)}
 .nav__ig{display:inline-flex;color:var(--ink)}
 .nav__ig:hover{color:var(--olive)}
-.nav__cta{background:var(--olive);color:#fff !important;padding:10px 22px;border-radius:999px;font-size:12px !important;letter-spacing:.05em;transition:.35s var(--ease)}
-.nav__cta:hover{background:var(--olive-deep);transform:translateY(-2px)}
+.nav__cta{background:var(--brown);color:#fff !important;padding:10px 22px;border-radius:999px;font-size:12px !important;letter-spacing:.05em;transition:.35s var(--ease)}
+.nav__cta:hover{background:var(--brown-deep);transform:translateY(-2px)}
 .nav__burger{display:none;background:none;border:0;color:var(--ink);font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 
 /* HERO */
@@ -86,14 +86,14 @@ h1,h2,h3{margin:0;color:var(--ink);font-family:var(--serif);font-weight:500;line
 .hero__sign{margin-top:26px;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--sand)}
 .hero__actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px}
 .btn-fill{background:var(--ink);color:var(--bg);padding:15px 34px;border-radius:999px;font-size:13px;letter-spacing:.05em;transition:.35s var(--ease);border:1px solid var(--ink)}
-.btn-fill:hover{background:var(--olive);border-color:var(--olive);transform:translateY(-3px);box-shadow:var(--soft)}
+.btn-fill:hover{background:var(--brown);border-color:var(--brown);transform:translateY(-3px);box-shadow:var(--soft)}
 .btn-ghost{padding:15px 32px;border-radius:999px;font-size:13px;letter-spacing:.05em;border:1px solid var(--line);transition:.35s var(--ease)}
 .btn-ghost:hover{border-color:var(--olive);color:var(--olive);transform:translateY(-3px)}
 .hero__media{position:relative}
 .hero__media .arch{aspect-ratio:4/5;background:var(--bg-2);box-shadow:var(--soft)}
 .hero__media img{width:100%;height:100%;object-fit:cover;will-change:transform}
 .hero__badge{position:absolute;bottom:24px;left:-18px;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:14px 20px;box-shadow:var(--soft)}
-.hero__badge b{font-family:var(--serif);color:var(--ink);display:block;font-size:1.2rem}
+.hero__badge b{font-family:var(--serif);color:var(--brown);display:block;font-size:1.2rem}
 .hero__badge span{font-size:12px;color:var(--muted);letter-spacing:.04em}
 
 /* O MNIE */
@@ -134,10 +134,10 @@ h1,h2,h3{margin:0;color:var(--ink);font-family:var(--serif);font-weight:500;line
 .pf.sq{grid-column:span 3;aspect-ratio:4/3}
 
 /* CTA BAND */
-.band{background:var(--olive-deep);color:#E9E4DC;text-align:center;padding-block:clamp(64px,10vw,130px);position:relative;overflow:hidden}
-.band__blob{position:absolute;left:50%;top:-30%;transform:translateX(-50%);width:min(70vw,700px);aspect-ratio:1;background:radial-gradient(circle,rgba(174,202,233,.18),transparent 62%);border-radius:50%;pointer-events:none}
+.band{background:var(--brown);color:#F3EEE7;text-align:center;padding-block:clamp(64px,10vw,130px);position:relative;overflow:hidden}
+.band__blob{position:absolute;left:50%;top:-30%;transform:translateX(-50%);width:min(70vw,700px);aspect-ratio:1;background:radial-gradient(circle,rgba(224,201,167,.20),transparent 62%);border-radius:50%;pointer-events:none}
 .band h2{color:#fff;font-size:clamp(2.2rem,6vw,4.6rem);position:relative}
-.band h2 em{font-style:italic;color:#AECAE9}
+.band h2 em{font-style:italic;color:#E4CDAF}
 .band p{max-width:44ch;margin:20px auto 32px;color:rgba(233,228,220,.8);position:relative}
 .btn-cream{display:inline-block;background:#E9E4DC;color:var(--ink);padding:16px 44px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;transition:.4s var(--ease);border:1px solid #E9E4DC;position:relative}
 .btn-cream:hover{background:transparent;color:#fff;transform:translateY(-3px)}
@@ -201,7 +201,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--olive);b
 textarea{resize:vertical;min-height:120px}
 select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 18px) 21px,calc(100% - 13px) 21px;background-size:5px 5px;background-repeat:no-repeat}
 .btn{grid-column:1/-1;justify-self:start;background:var(--ink);color:var(--bg);border:1px solid var(--ink);font-family:var(--sans);font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:15px 42px;border-radius:999px;cursor:pointer;transition:.4s var(--ease)}
-.btn:hover{background:var(--olive);border-color:var(--olive);transform:translateY(-3px)}
+.btn:hover{background:var(--brown);border-color:var(--brown);transform:translateY(-3px)}
 
 /* STOPKA */
 .footer{background:var(--ink);color:#E9E4DC;padding-block:clamp(56px,8vw,88px)}
@@ -232,7 +232,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
     transition:opacity .4s var(--ease),transform .5s var(--ease),visibility .4s}
   .nav.open .nav__menu{opacity:1;visibility:visible;transform:none}
   .nav__menu a{font-family:var(--serif);font-size:clamp(2.1rem,11vw,3.4rem)!important;font-weight:400;letter-spacing:0;text-transform:none;color:var(--ink)!important;padding:8px 0}
-  .nav__menu .nav__cta{background:transparent!important;color:var(--olive)!important;padding:8px 0!important;border-radius:0!important}
+  .nav__menu .nav__cta{background:transparent!important;color:var(--brown)!important;padding:8px 0!important;border-radius:0!important}
   .nav__menu .nav__ig svg{width:28px;height:28px}
   form{grid-template-columns:1fr}
   .footer__top{grid-template-columns:1fr}
@@ -335,7 +335,7 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 <section class="band">
   <div class="band__blob breathe"></div>
   <div class="wrap">
-    <span class="kicker" style="color:#AECAE9">Zacznijmy</span>
+    <span class="kicker" style="color:#E4CDAF">Zacznijmy</span>
     <h2 style="margin-top:14px">Zatrzymajmy <em>Wasze ciepłe chwile</em></h2>
     <p>Kilka sesji w miesiącu — napiszcie z wyprzedzeniem, żeby złapać wolny termin.</p>
     <a class="btn-cream" href="#kontakt">Sprawdź dostępność</a>
